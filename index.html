@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table Output & Processing</title>
+    <title>Dynamic Table Processing</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
         table {
             width: 50%;
             border-collapse: collapse;
@@ -22,58 +26,79 @@
 </head>
 <body>
     <h2>Table 1: Input Data</h2>
-    <table>
+    <table id="inputTable">
         <tr>
             <th>Index</th>
             <th>Value</th>
         </tr>
-        <script>
-            const tableData = [
-                { index: "A1", value: 41 },
-                { index: "A2", value: 18 },
-                { index: "A3", value: 21 },
-                { index: "A4", value: 63 },
-                { index: "A5", value: 2 },
-                { index: "A6", value: 53 },
-                { index: "A7", value: 5 },
-                { index: "A8", value: 57 },
-                { index: "A9", value: 60 },
-                { index: "A10", value: 93 },
-                { index: "A11", value: 28 },
-                { index: "A12", value: 3 },
-                { index: "A13", value: 90 },
-                { index: "A14", value: 39 },
-                { index: "A15", value: 80 },
-                { index: "A16", value: 88 },
-                { index: "A17", value: 49 },
-                { index: "A18", value: 60 },
-                { index: "A19", value: 26 },
-                { index: "A20", value: 28 }
-            ];
-            tableData.forEach(row => {
-                document.write(`<tr><td>${row.index}</td><td>${row.value}</td></tr>`);
-            });
-        </script>
     </table>
 
     <h2>Table 2: Processed Data</h2>
-    <table>
+    <table id="processedTable">
         <tr>
             <th>Category</th>
             <th>Value</th>
         </tr>
-        <tr>
-            <td>Alpha</td>
-            <td>30</td>
-        </tr>
-        <tr>
-            <td>Beta</td>
-            <td>16.0</td>
-        </tr>
-        <tr>
-            <td>Charlie</td>
-            <td>270</td>
-        </tr>
     </table>
+
+    <script>
+        const tableData = [
+            { index: "A1", value: 41 },
+            { index: "A2", value: 18 },
+            { index: "A3", value: 21 },
+            { index: "A4", value: 63 },
+            { index: "A5", value: 2 },
+            { index: "A6", value: 53 },
+            { index: "A7", value: 5 },
+            { index: "A8", value: 57 },
+            { index: "A9", value: 60 },
+            { index: "A10", value: 93 },
+            { index: "A11", value: 28 },
+            { index: "A12", value: 3 },
+            { index: "A13", value: 90 },
+            { index: "A14", value: 39 },
+            { index: "A15", value: 80 },
+            { index: "A16", value: 88 },
+            { index: "A17", value: 49 },
+            { index: "A18", value: 60 },
+            { index: "A19", value: 26 },
+            { index: "A20", value: 28 }
+        ];
+
+        // Populate Input Table
+        const inputTable = document.getElementById("inputTable");
+        tableData.forEach(row => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td>${row.index}</td><td>${row.value}</td>`;
+            inputTable.appendChild(tr);
+        });
+
+        // Extract specific values for processing
+        const A5 = tableData.find(row => row.index === "A5").value;
+        const A7 = tableData.find(row => row.index === "A7").value;
+        const A12 = tableData.find(row => row.index === "A12").value;
+        const A13 = tableData.find(row => row.index === "A13").value;
+        const A15 = tableData.find(row => row.index === "A15").value;
+        const A20 = tableData.find(row => row.index === "A20").value;
+
+        // Perform required calculations
+        const alpha = A5 + A20;       // A5 + A20
+        const beta = (A15 / A7).toFixed(2);   // A15 / A7 (2 decimal places)
+        const charlie = A13 * A12;    // A13 * A12
+
+        // Populate Processed Table
+        const processedTable = document.getElementById("processedTable");
+        const processedData = [
+            { category: "Alpha (A5 + A20)", value: alpha },
+            { category: "Beta (A15 / A7)", value: beta },
+            { category: "Charlie (A13 * A12)", value: charlie }
+        ];
+
+        processedData.forEach(row => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td>${row.category}</td><td>${row.value}</td>`;
+            processedTable.appendChild(tr);
+        });
+    </script>
 </body>
 </html>
