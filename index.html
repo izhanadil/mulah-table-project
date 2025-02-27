@@ -1,0 +1,69 @@
+echo '<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Output & Processing</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Table 1: Input Data</h2>
+    <table>
+        <tr>
+            <th>Index</th>
+            <th>Value</th>
+        </tr>
+        <script>
+            const tableData = [
+                { index: "A1", value: 41 },
+                { index: "A2", value: 18 },
+                { index: "A3", value: 21 },
+                { index: "A4", value: 63 },
+                { index: "A5", value: 2 },
+                { index: "A7", value: 5 },
+                { index: "A12", value: 15 },
+                { index: "A13", value: 18 },
+                { index: "A15", value: 80 },
+                { index: "A20", value: 28 }
+            ];
+            tableData.forEach(row => {
+                document.write(`<tr><td>${row.index}</td><td>${row.value}</td></tr>`);
+            });
+        </script>
+    </table>
+
+    <h2>Table 2: Processed Data</h2>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Alpha</td>
+            <td>30</td>
+        </tr>
+        <tr>
+            <td>Beta</td>
+            <td>16.0</td>
+        </tr>
+        <tr>
+            <td>Charlie</td>
+            <td>270</td>
+        </tr>
+    </table>
+</body>
+</html>' > index.html
